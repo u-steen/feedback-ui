@@ -1,25 +1,22 @@
-import logo from './logo.svg';
-import './App.css';
+import Header from "./components/Header";
+function App(){
+    const title = "FeedBack UI";
+    const comments = [
+        {id: 1, comment: "Comment1"},
+        {id: 2, comment: "Comment2"},
+        {id: 3, comment: "Comment3"}
+    ]
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    return (<>
+        <Header />
+        <h3>Comments({comments.length})</h3>
+        <ul>
+        {
+            comments.map((comment, index) =>
+                <li key={index}> {comment.comment} </li>)
+        }
+        </ul>
+    </>)
 }
 
 export default App;
