@@ -1,9 +1,15 @@
-function FeedbackItem() {
+import { FaTimes } from "react-icons/fa"
+import Card from '../shared/Card'
+function FeedbackItem({item}) {
+
    return (
-       <div className="card">
-           <div className="num-display">10</div>
-           <div className="text-display">This is sample text</div>
-       </div>
+       <Card>
+           <div className="num-display">{item.rating}</div>
+           <button className="close">
+               <FaTimes/>
+           </button>
+           <div className="text-display">{item.text}</div>
+       </Card>
    )
 }
 
