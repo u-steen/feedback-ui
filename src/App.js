@@ -1,4 +1,5 @@
 import Header from "./components/Header";
+import FeedbackItem from "./components/FeedbackItem";
 function App(){
     const title = "FeedBack UI";
     const comments = [
@@ -9,13 +10,9 @@ function App(){
 
     return (<>
         <Header />
-        <h3>Comments({comments.length})</h3>
-        <ul>
-        {
-            comments.map((comment, index) =>
-                <li key={index}> {comment.comment} </li>)
-        }
-        </ul>
+            <div className="container">
+                <FeedbackItem/>
+            </div>
     </>)
 }
 
