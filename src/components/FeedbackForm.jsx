@@ -1,11 +1,13 @@
 import {useState} from "react";
 import Card from "./shared/Card"
 import Button from "./shared/Button";
+import RatingSelect from "./RatingSelect"
 
 function FeedbackForm(){
     const [text, setText] = useState("");
     const [btnDisabled, setBtnDisabled] = useState(true);
     const [message, setMessage] = useState("");
+    const [rating, setRating] = useState(10)
 
     function handleTextChange(e){
         // BUG: 1 character late - setState is async - useEffect is the replacement
@@ -28,6 +30,7 @@ function FeedbackForm(){
         <Card>
             <form>
                 <h2>Give us feedback</h2>
+                <RatingSelect selected={rating} select={setRating}/>
                 <div className="input-group">
                     <input type="text" placeholder="Write a review" onChange={handleTextChange} value={text}/>
                     <Button type="submit" version="secondary" isDisabled={btnDisabled}>Send</Button>
