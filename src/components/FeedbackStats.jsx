@@ -1,3 +1,5 @@
+import PropTypes from "prop-types";
+
 function FeedbackStats({feedback}){
     let average = feedback.reduce((acc, item) => {
         return acc += item.rating;
@@ -9,6 +11,10 @@ function FeedbackStats({feedback}){
             <h4>Average: {isNaN(average) ? "0" : average}</h4>
         </div>
     )
+}
+
+FeedbackStats.propTypes = {
+    feedback: PropTypes.array.isRequired,
 }
 
 export default FeedbackStats;
