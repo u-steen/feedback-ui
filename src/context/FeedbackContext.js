@@ -1,15 +1,10 @@
 import {createContext, useState} from "react";
 import {v4 as uuidv4} from "uuid";
+import feedbackData from "../data/feedbackData";
 
 const FeedbackContext = createContext()
 export const FeedbackProvider = ({children}) => {
-    const [feedback, setFeedback] = useState([
-        {
-            id: 1,
-            text: "This is a test review",
-            rating: 10,
-        }
-    ])
+    const [feedback, setFeedback] = useState(feedbackData)
 
     function deleteFeedbackItem(id){
         if(!window.confirm("Are you sure?")) {
