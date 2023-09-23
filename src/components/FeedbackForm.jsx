@@ -1,13 +1,16 @@
-import {useState} from "react";
+import {useContext, useState} from "react";
+
 import Card from "./shared/Card"
 import Button from "./shared/Button";
 import RatingSelect from "./RatingSelect"
+import FeedbackContext from "../context/FeedbackContext";
 
-function FeedbackForm({addFeedback}){
+function FeedbackForm(){
     const [text, setText] = useState("");
     const [btnDisabled, setBtnDisabled] = useState(true);
     const [message, setMessage] = useState("");
     const [rating, setRating] = useState(10)
+    const {addFeedback} = useContext(FeedbackContext)
 
     function handleTextChange(e){
         // BUG: 1 character late - setState is async - useEffect is the replacement
