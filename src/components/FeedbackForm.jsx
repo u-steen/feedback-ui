@@ -1,4 +1,4 @@
-import {useContext, useState} from "react";
+import {useContext, useState, useEffect} from "react";
 
 import Card from "./shared/Card"
 import Button from "./shared/Button";
@@ -6,16 +6,22 @@ import RatingSelect from "./RatingSelect"
 import FeedbackContext from "../context/FeedbackContext";
 
 function FeedbackForm(){
-    const [text, setText] = useState("");
     const [btnDisabled, setBtnDisabled] = useState(true);
     const [message, setMessage] = useState("");
+    const [text, setText] = useState("");
     const [rating, setRating] = useState(10)
-    const {addFeedback} = useContext(FeedbackContext)
+
+    const {addFeedback, feedbackEdit, updateFeedback} = useContext(FeedbackContext)
+
+    useEffect(() => {
+        setText(feedbackEdit.item.text)
+        setRating(feedbackEdit.item.rating)
+        setBtnDisabled(false)
+    }, [feedbackEdit])
 
     function handleTextChange(e){
         // BUG: 1 character late - setState is async - useEffect is the replacement
         setText(e.target.value);
-        // console.log(`Acum text este: ${text}`)
 
         if(text === '') {
             setMessage(null)
@@ -36,7 +42,11 @@ function FeedbackForm(){
                 text,
                 rating,
             }
-            addFeedback(newFeedback);
+            if(feedbackEdit.editMode === true) {
+                updateFeedback(feedbackEdit.item.id, newFeedback)
+            } else {
+                addFeedback(newFeedback);
+            }
             setText("")
         }
     }

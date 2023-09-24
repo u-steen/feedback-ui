@@ -2,12 +2,12 @@ const feedbackData = [
     {
         id: 1,
         rating: 9,
-        text: "ldkfjalfdsafsa sadf erw rqwelf"
+        text: "Test review 1"
     },
     {
         id: 2,
         rating: 8,
-        text: "ldalfdsafsa sadf dfsa erw rqwelf"
+        text: "Test review number 2 haha"
     },
     {
         id: 3,
