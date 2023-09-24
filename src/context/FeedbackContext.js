@@ -18,10 +18,11 @@ export const FeedbackProvider = ({children}) => {
         fetchFeedback()
     }, [])
 
-    function deleteFeedbackItem(id){
+    async function deleteFeedbackItem(id){
         if(!window.confirm("Are you sure?")) {
             return;
         }
+        await fetch(`/feedback/${id}`, {method: "DELETE"})
         setFeedback(feedback.filter((item) => item.id !== id))
     }
 
@@ -34,16 +35,25 @@ export const FeedbackProvider = ({children}) => {
             body: JSON.stringify(newFeedback)
         })
 
-        const data = response.json()
-        setFeedback([newFeedback, ...feedback])
+        const data = await response.json()
+        setFeedback([data, ...feedback])
     }
 
     function editFeedback(item){
         setFeedbackEdit({item, editMode: true})
     }
 
-    function updateFeedback(id, newItem){
-        setFeedback(feedback.map((item) => (item.id === id ? {...item, ...newItem} : item)))
+    async function updateFeedback(id, newItem){
+        const response = await fetch(`/feedback/${id}`, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(newItem)
+        })
+
+        const data = await response.json()
+        setFeedback(feedback.map((item) => (item.id === id ? {...item, ...data} : item)))
         // Sintaxa alternativa
         // setFeedback(feedback.map((item) => {
         //     if(item.id === id) {
