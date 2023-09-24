@@ -19,9 +19,9 @@ function App(){
                 <Routes>
                     <Route exact path={"/"} element={
                         <>
-                            <FeedbackForm/>
-                            <FeedbackStats/>
                             <div className="container">
+                                <FeedbackForm/>
+                                <FeedbackStats/>
                                 <FeedbackList/>
                             </div>
                             <AboutIcon/>
